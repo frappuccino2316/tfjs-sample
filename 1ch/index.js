@@ -19,7 +19,8 @@ const createModel = () => {
   const model = tf.sequential();
 
   model.add(tf.layers.dense({ inputShape: [1], units: 1, useBias: true }));
-  model.add(tf.layers.dense({ units: 1, useBias: true }));
+  model.add(tf.layers.dense({ units: 10, useBias: true }));
+  model.add(tf.layers.dense({ units: 50, activation: 'sigmoid' }));
   model.add(tf.layers.dense({ units: 1, useBias: true }));
 
   return model;
@@ -66,7 +67,7 @@ const trainModel = async (model, inputs, labels) => {
   });
 
   const batchSize = 32;
-  const epochs = 120;
+  const epochs = 100;
 
   return await model.fit(inputs, labels, {
     batchSize,
