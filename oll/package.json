@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "start": "live-server dist",
+    "build": "webpack",
+    "watch": "webpack -w"
+  },
   "dependencies": {
     "@tensorflow/tfjs-node": "^3.20.0"
   },
