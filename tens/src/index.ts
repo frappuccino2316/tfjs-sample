@@ -1,28 +1,16 @@
 import * as tf from '@tensorflow/tfjs';
 
-console.log('start');
-console.log(tf.memory().numTensors);
-console.log(tf.memory().numBytes);
+const snap = tf.tensor([1, 2, 3]);
+const crackle = tf.tensor([3.141592654]);
+const pop = tf.tensor([
+  [1, 2, 3],
+  [4, 5, 6],
+]);
 
-let keeper, chaser, seeker, beater;
+console.log(snap);
+crackle.print();
 
-tf.tidy(() => {
-  keeper = tf.tensor([1, 2, 3]);
-  chaser = tf.tensor([1, 2, 3]);
-  seeker = tf.tensor([1, 2, 3]);
-  beater = tf.tensor([1, 2, 3]);
+console.log('Welcome Back Array', pop.arraySync());
+console.log('Welcome Back Typed!', pop.dataSync());
 
-  console.log('inside', tf.memory().numTensors);
-
-  tf.keep(keeper);
-  return chaser;
-});
-
-console.log('after', tf.memory().numTensors);
-console.log(tf.memory().numBytes);
-
-keeper.dispose();
-chaser.dispose();
-
-console.log('end', tf.memory().numTensors);
-console.log(tf.memory().numBytes);
+tf.dispose([snap, crackle, pop]);
