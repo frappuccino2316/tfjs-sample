@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "live-server dist",
-    "build": "webpack",
+    "build": "webpack --mode=development",
     "watch": "webpack -w"
   },
   "dependencies": {
