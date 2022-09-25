@@ -6,6 +6,15 @@ tf.tidy(() => {
   const gantTensor: Tensor3D = tf.browser.fromPixels(
     gantImage as HTMLImageElement
   );
+  console.log(`gant tensor shape: ${gantTensor.shape}`);
+  console.log(gantImage);
 
-  console.log(`Gant tensor shape: ${gantTensor.shape}`);
+  const cake: HTMLImageElement = new Image();
+  // cake.crossOrigin = 'anonymous';
+  cake.src = '/cake.jpg';
+  cake.onload = () => {
+    const cakeTensor: Tensor3D = tf.browser.fromPixels(cake);
+    console.log(`cake tensor shape: ${cakeTensor.shape}`);
+  };
+  console.log(cake);
 });
