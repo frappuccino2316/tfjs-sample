@@ -1,13 +1,16 @@
 import * as tf from '@tensorflow/tfjs';
-import { Tensor2D, Tensor3D, TensorLike } from '@tensorflow/tfjs';
 
-const bigMess = tf.randomUniform([400, 400, 3]);
+const bigMess: tf.Tensor3D = tf.randomUniform([200, 400, 1]);
+
+const data = bigMess.arraySync();
+data.forEach((s) => {
+  s.sort((a, b) => b[0] - a[0]);
+});
+const sortedBigMess: tf.Tensor3D = tf.tensor(data);
+
 const myCanvas = document.getElementById('randomness');
 tf.browser
-  .toPixels(
-    bigMess as Tensor2D | Tensor3D | TensorLike,
-    myCanvas as HTMLCanvasElement | undefined
-  )
+  .toPixels(sortedBigMess, myCanvas as HTMLCanvasElement | undefined)
   .then(() => {
     bigMess.dispose();
     console.log('Make sure we cleaned up', tf.memory().numTensors);
