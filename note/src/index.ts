@@ -1,3 +1,5 @@
+console.time('note');
+
 import * as fs from 'fs';
 import * as path from 'path';
 import * as tf from '@tensorflow/tfjs-node';
@@ -10,8 +12,10 @@ const cakeImage = fs.readFileSync(cakeImagePath);
 tf.tidy(() => {
   const cakeTensor: Tensor3D | Tensor4D = tf.node.decodeImage(cakeImage);
   console.log(`cakeTensor shape is ${cakeTensor.shape}`);
-  cakeTensor.print();
 
   const cakeBWTensor: Tensor3D | Tensor4D = tf.node.decodeImage(cakeImage, 1);
   console.log(`cakeBWTensor shape is ${cakeBWTensor.shape}`);
+  cakeBWTensor.print();
 });
+
+console.timeEnd('note');
