@@ -4,8 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel index.html --open",
-    "build": "parcel build index.html",
+    "startm": "parcel mirror.html --open",
+    "buildm": "parcel build mirror.html",
+    "startc": "parcel crop.html --open",
+    "buildc": "parcel build crop.html",
+    "startre": "parcel resize.html --open",
+    "buildre": "parcel build resize.html",
+    "startro": "parcel rotate.html --open",
+    "buildro": "parcel build rotate.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
