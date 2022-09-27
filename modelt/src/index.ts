@@ -2,7 +2,7 @@ import * as tf from '@tensorflow/tfjs';
 import { Rank, Tensor } from '@tensorflow/tfjs';
 
 tf.ready().then(() => {
-  const modelPath = '../model/ttt_model.json';
+  const modelPath = 'model/ttt_model.json';
   tf.tidy(() => {
     console.log('tidy');
     tf.loadLayersModel(modelPath).then((model) => {
