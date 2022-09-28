@@ -31,6 +31,30 @@ tf.ready().then(() => {
       ctx.strokeStyle = '#0F0';
       ctx.lineWidth = 4;
       ctx.strokeRect(startX, startY, width, height);
+
+      const tHeight = myTensor.shape[0];
+      const tWidth = myTensor.shape[0];
+      const tStartX = box[0] * tWidth;
+      const tStartY = box[1] * tHeight;
+
+      const cropLength = parseInt(
+        ((box[2] - box[0]) * tWidth) as unknown as string,
+        0
+      );
+      const cropHeight = parseInt(
+        ((box[3] - box[1]) * tHeight) as unknown as string,
+
+        0
+      );
+      const startPos = [tStartY, tStartX, 0];
+      const cropSize = [cropHeight, cropLength, 3];
+      const cropped = tf.slice(myTensor, startPos, cropSize);
+
+      const readyFace = tf.image
+        .resizeBilinear(cropped, [96, 96], true)
+        .reshape([1, 96, 96, 3]);
+
+      readyFace.print();
     });
   });
 });
